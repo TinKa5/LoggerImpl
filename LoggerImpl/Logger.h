@@ -13,7 +13,7 @@ protected:
 	Logger(string filename) : is_file(true) {
 		ofstream* of = new ofstream(filename);
 		if (!of->is_open()) {
-			throw exception("");
+			throw exception("Exceptionn during opening log file");
 		}
 		*of << "LOG FILe\n";
 		stream_ = of;
@@ -33,14 +33,7 @@ public:
 			instance = new Logger();
 		}
 		return instance;
-	}
-
-	~Logger() {
-		if (is_file) {
-			((ofstream*)stream_)->close();
-			delete stream_;
-		}
-	}
+	}	
 
 	static Logger* getLogger(std::string filename) {
 		if (instance == nullptr) {
@@ -56,6 +49,14 @@ public:
 	Logger* operator <<(const string msg) {
 		log(msg);
 		return instance;
-	};
+	}
+
+	~Logger() {
+		if (is_file) {
+			((ofstream*)stream_)->close();
+			delete stream_;
+		}
+	}
+
 };
 

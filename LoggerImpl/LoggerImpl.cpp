@@ -6,7 +6,8 @@ using namespace std;
 
 int main()
 {
-    Logger* logger1 = Logger::getLogger("log3.csv");
+    Logger* logger1 = Logger::getLogger("log3.csv");  //to file
+    //Logger* logger1 = Logger::getLogger();  // to console
     
     *logger1 << "LOGGER first line";
 
